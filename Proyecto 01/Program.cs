@@ -83,6 +83,7 @@ do
             totalimpactosaltos = 0;
             totalimpactosmedios = 0;
             totalimpactosbajos = 0;
+            Console.WriteLine();
             Console.WriteLine("Estadísticas reiniciadas");
             Console.WriteLine();
             Console.WriteLine("Presione ENTER");
