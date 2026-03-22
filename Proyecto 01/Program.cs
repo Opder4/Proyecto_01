@@ -11,7 +11,9 @@ int contadorevaluados = 0;
 int contadorrechazados = 0;
 int EntrarEvaluacionTecnica = 0;
 bool resultadotecnico = false;
-int totalimpactos = 0;
+int totalimpactosbajos = 0;
+int totalimpactosaltos = 0;
+int totalimpactosmedios = 0;
 
 do
 {
@@ -36,8 +38,12 @@ do
         case 1:
             ValidacionDeDatos();
             resultadotecnico = ValidacionTecnica(EntrarEvaluacionTecnica);
-            Console.WriteLine($"{ClasificacionImpacto(resultadotecnico)}");
             Console.WriteLine();
+            duracion = 0;
+            clasificacion = 0;
+            hora = 0;
+            produccion = 0;
+            tipo = 0;
             Console.WriteLine("Presione ENTER para volver al menú");
             Console.WriteLine();
             Console.ReadLine();
@@ -51,11 +57,6 @@ do
             break;
 
         case 4:
-            duracion = 0;
-            clasificacion = 0;
-            hora = 0;
-            produccion = 0;
-            tipo = 0;
             Console.WriteLine("Estadísticas reiniciadas");
             Console.WriteLine();
             Console.WriteLine("Presione Enter");
@@ -171,7 +172,7 @@ void ValidacionDeDatos()
 
 bool ValidacionTecnica(int b)
 {
-    if ((clasificacion==1 && (hora>=0 || hora<=23)) || (clasificacion==2 && (hora>=6 || hora<=22)) || (clasificacion==3 && (hora>=22 || hora<=5)))
+    if ((clasificacion==1 && (hora>=0 || hora<=23)) || (clasificacion==2 && (hora>=5 && hora<=23)) || (clasificacion==3 && ((hora>=20 && hora<=23) ||(hora>=0 && hora<=6))))
     {
         if ((tipo==1 && (duracion>=60 && duracion<=180)) || (tipo==2 && (duracion>=20 && duracion<=90)) || (tipo==3 && (duracion>=30 && duracion<=120)) || (tipo==4 && (duracion>=30 && duracion<=240)))
         {
@@ -179,26 +180,25 @@ bool ValidacionTecnica(int b)
             {
                 contadorevaluados++;
                 Console.WriteLine();
-                Console.WriteLine("Validación Técnica satisfactoria");
+                Console.WriteLine("Validación Técnica Satisfactoria");
                 Console.WriteLine();
                 Console.WriteLine("Presione ENTER para continuar");
                 Console.WriteLine("");
                 Console.ReadLine();
                 Console.Clear();
+                Console.WriteLine($"{ClasificacionImpacto(resultadotecnico)}");
                 return true;
             }
             else
             {
                 contadorevaluados++;
                 contadorrechazados++;
-                Console.WriteLine("");
-                Console.WriteLine("Validación Técnica insatisfactoria");
                 Console.WriteLine();
                 Console.WriteLine("No entra en ningún impacto");
                 Console.WriteLine();
                 Console.WriteLine("Desición Final: Rechazar");
                 Console.WriteLine();
-                Console.WriteLine("Razón: Incumple regla/s obligatorias");
+                Console.WriteLine("Razón: Incumple regla/s obligatoria/s");
                 Console.WriteLine();
                 Console.WriteLine("Presione ENTER para continuar");
                 Console.WriteLine("");
@@ -211,14 +211,12 @@ bool ValidacionTecnica(int b)
         {
             contadorevaluados++;
             contadorrechazados++;
-            Console.WriteLine("");
-            Console.WriteLine("Validación Técnica insatisfactoria");
             Console.WriteLine();
             Console.WriteLine("No entra en ningún impacto");
             Console.WriteLine();
             Console.WriteLine("Desición Final: Rechazar");
             Console.WriteLine();
-            Console.WriteLine("Razón: Incumple regla/s obligatorias");
+            Console.WriteLine("Razón: Incumple regla/s obligatoria/s");
             Console.WriteLine();
             Console.WriteLine("Presione ENTER para continuar");
             Console.WriteLine("");
@@ -231,14 +229,12 @@ bool ValidacionTecnica(int b)
     {
         contadorevaluados++;
         contadorrechazados++;
-        Console.WriteLine("");
-        Console.WriteLine("Validación Técnica insatisfactoria");
         Console.WriteLine();
         Console.WriteLine("No entra en ningún impacto");
         Console.WriteLine();
         Console.WriteLine("Desición Final: Rechazar");
         Console.WriteLine();
-        Console.WriteLine("Razón: Incumple regla/s obligatorias");
+        Console.WriteLine("Razón: Incumple regla/s obligatoria/s");
         Console.WriteLine();
         Console.WriteLine("Presione ENTER para continuar");
         Console.WriteLine("");
@@ -250,9 +246,9 @@ bool ValidacionTecnica(int b)
 
 string ClasificacionImpacto(bool b)
 {
-    if (produccion==3 || duracion>=120 || hora>=20 && hora<=23)
+    if ((produccion == 3 || duracion >= 120 || hora >= 20 && hora <= 23) || ((produccion == 2 && ((tipo == 2 && duracion >= 60 && duracion <= 90) || (tipo == 3 && duracion >= 60 && duracion <= 120) || (tipo == 4 && duracion >= 60 && duracion <= 120) || (tipo == 1 && duracion >= 60 && duracion <= 120))) && (produccion == 1 && ((tipo == 2 && duracion >= 20 && duracion < 60) || (tipo == 3 && duracion >= 30 && duracion < 60) || (tipo == 4 && duracion >= 30 && duracion < 60)))))
     {
-        totalimpactos++;
+        totalimpactosaltos++;
         Console.WriteLine("Impacto del contenido: Alto");
         Console.WriteLine("");
         Console.WriteLine("Desición final: Enviar a revisión");
@@ -260,18 +256,58 @@ string ClasificacionImpacto(bool b)
         Console.WriteLine("Razón: cumple reglas técnicas, pero tiene Impacto Alto");
         return "";
     }
-    else if (produccion==2 || duracion>=60 && duracion<=120)
+    else if (produccion == 2 && ((tipo == 2 && duracion >= 60 && duracion <=90) || (tipo == 3 && duracion >= 60 && duracion <= 120) || (tipo == 4 && duracion >= 60 && duracion <= 120) || (tipo == 1 && duracion >= 60 && duracion <=120)))
     {
-        totalimpactos++;
-        return "Impacto del contenido: Medio";
+        if ((clasificacion == 2 && (hora == 5 || hora == 23)) || (clasificacion == 3 && ((hora == 20 || hora==21 || hora == 6))))
+        {
+            totalimpactosmedios++;
+            Console.WriteLine("Impacto del contenido: Medio");
+            Console.WriteLine();
+            Console.WriteLine("Desición final: Publicar con ajustes");
+            Console.WriteLine();
+            Console.WriteLine("Razón: Cumple con Reglas Técnicas, pero se necesita ajustar el horario permitido");
+            Console.WriteLine();
+            return "";
+        }
+        else
+        {
+            totalimpactosmedios++;
+            Console.WriteLine("Impacto del contenido: Medio");
+            Console.WriteLine();
+            Console.WriteLine("Desición final: Publicar");
+            Console.WriteLine();
+            Console.WriteLine("Razón: Cumple con Reglas Técnicas y tiene impacto Medio");
+            Console.WriteLine();
+            return "";
+        }
     }
-    else if (produccion==1 && duracion<60)
+    else if (produccion == 1 && ((tipo == 2 && duracion >= 20 && duracion<60) || (tipo == 3 && duracion >=30 && duracion<60) || (tipo == 4 && duracion >= 30 && duracion < 60)))
     {
-        totalimpactos++;
-        return "Impacto del contenido: Bajo";
+        if ((clasificacion == 2 && (hora == 5 || hora == 23)) || (clasificacion == 3 && ((hora == 20 || hora == 21 || hora == 6))))
+        {
+            totalimpactosbajos++;
+            Console.WriteLine("Impacto del contenido: Bajo");
+            Console.WriteLine();
+            Console.WriteLine("Desición final: Publicar con ajustes");
+            Console.WriteLine();
+            Console.WriteLine("Razón: Cumple con Reglas Técnicas, pero se necesita ajustar el horario permitido");
+            Console.WriteLine();
+            return "";
+        }
+        else
+        {
+            totalimpactosbajos++;
+            Console.WriteLine("Impacto del contenido: Bajo");
+            Console.WriteLine("");
+            Console.WriteLine("Desición Final: Publicar");
+            Console.WriteLine();
+            Console.WriteLine("Razón: Cumple con Reglas Técnicas y tiene impacto Bajo");
+            Console.WriteLine();
+            return "";
+        }
     }
     else
     {
-        return "No entra a ningún impacto";
+        return "";
     }
 }
