@@ -274,7 +274,7 @@ bool ValidacionTecnica(int b)
 
 string ClasificacionImpacto(bool b)
 {
-    if ((produccion == 3 || duracion >= 120 || hora >= 20 && hora <= 23) || ((produccion == 2 && ((tipo == 2 && duracion >= 60 && duracion <= 90) || (tipo == 3 && duracion >= 60 && duracion <= 120) || (tipo == 4 && duracion >= 60 && duracion <= 120) || (tipo == 1 && duracion >= 60 && duracion <= 120))) && (produccion == 1 && ((tipo == 2 && duracion >= 20 && duracion < 60) || (tipo == 3 && duracion >= 30 && duracion < 60) || (tipo == 4 && duracion >= 30 && duracion < 60)))))
+    if ((produccion == 3 || duracion > 120 || hora >= 20 && hora <= 23) || ((produccion == 2 && ((tipo == 2 && duracion >= 60 && duracion <= 90) || (tipo == 3 && duracion >= 60 && duracion <= 120) || (tipo == 4 && duracion >= 60 && duracion <= 120) || (tipo == 1 && duracion >= 60 && duracion <= 120))) && (produccion == 1 && ((tipo == 2 && duracion >= 20 && duracion < 60) || (tipo == 3 && duracion >= 30 && duracion < 60) || (tipo == 4 && duracion >= 30 && duracion < 60)))))
     {
         totalenrevision++;
         totalimpactosaltos++;
