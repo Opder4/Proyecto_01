@@ -402,7 +402,18 @@ void MostrarReglas()
 }
 void EstadisticasSesion()
 {
-    Console.WriteLine("Estadísticas de la sesión");
+    for (int i = 0; i < 50; i++)
+    {
+        Console.Write("-");
+    }
+    Console.WriteLine();
+    Console.Write("           ESTADÍSTICAS DE LA SESIÓN");
+    Console.WriteLine();
+    for (int i = 0; i < 50; i++)
+    {
+        Console.Write("-");
+    }
+    Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine($"Total de Contenidos Evaluados: {contadorevaluados}");
     Console.WriteLine();
@@ -432,7 +443,20 @@ void EstadisticasSesion()
         Console.WriteLine("No hay un solo impacto predominante por ahora");
         Console.WriteLine();
     }
-    Console.WriteLine($"El porcentaje de Aprobación es del {(totalpublicados / contadorevaluados) * 100}%");
+    if (contadorevaluados==0)
+    {
+        Console.WriteLine($"El porcentaje de Aprobación es del 0%");
+        Console.WriteLine();
+    }
+    else
+    {
+        Console.WriteLine($"El porcentaje de Aprobación es del {(totalpublicados / contadorevaluados) * 100}%");
+        Console.WriteLine();
+    }
+    for (int i = 0; i < 50; i++)
+    {
+        Console.Write("-");
+    }
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine("Presione Enter");
