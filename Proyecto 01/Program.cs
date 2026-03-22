@@ -7,14 +7,14 @@ int hora = 0;
 int produccion = 0;
 int rechazados = 0;
 int impacto = 0;
-int contadorevaluados = 0;
+double contadorevaluados = 0;
 int contadorrechazados = 0;
 int EntrarEvaluacionTecnica = 0;
 bool resultadotecnico = false;
 int totalimpactosbajos = 0;
 int totalimpactosaltos = 0;
 int totalimpactosmedios = 0;
-int totalpublicados = 0;
+double totalpublicados = 0;
 int totalenrevision = 0;
 
 do
