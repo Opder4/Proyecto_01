@@ -73,45 +73,8 @@ do
             MostrarReglas();
             break;
         case 3:
-            Console.WriteLine("Estadísticas de la sesión");
-            Console.WriteLine();
-            Console.WriteLine($"Total de Contenidos Evaluados: {contadorevaluados}");
-            Console.WriteLine();
-            Console.WriteLine($"Total de Contenidos Publicados: {totalpublicados}");
-            Console.WriteLine();
-            Console.WriteLine($"Total de Contenidos Rechazados: {contadorrechazados}");
-            Console.WriteLine();
-            Console.WriteLine($"Total de Contenidos en Revisión: {totalenrevision}");
-            Console.WriteLine();
-            if (totalimpactosaltos>totalimpactosmedios && totalimpactosaltos>totalimpactosbajos)
-            {
-                Console.WriteLine("El impacto predominante es el Impacto Alto");
-                Console.WriteLine();
-            }
-            else if (totalimpactosmedios>totalimpactosaltos && totalimpactosmedios>totalimpactosbajos)
-            {
-                Console.WriteLine("El impacto predominante es el Impacto Medio");
-                Console.WriteLine();
-            }
-            else if (totalimpactosbajos>totalimpactosaltos && totalimpactosbajos>totalimpactosmedios)
-            {
-                Console.WriteLine("El impacto predominante es el Impacto Bajo");
-                Console.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine("No hay un solo impacto predominante por ahora");
-                Console.WriteLine();
-            }
-            Console.WriteLine($"El porcentaje de Aprobación es del {(totalpublicados/contadorevaluados)*100}%");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Presione Enter");
-            Console.WriteLine("");
-            Console.ReadLine();
-            Console.Clear();
+           EstadisticasSesion();
             break;
-
         case 4:
             contadorevaluados = 0;
             totalpublicados = 0;
@@ -142,6 +105,8 @@ do
             break;
     }
 } while (opcion != 5);
+EstadisticasSesion();
+Console.WriteLine();
 Console.WriteLine("Programa finalizado");
 
 void ValidacionDeDatos()
@@ -432,6 +397,46 @@ void MostrarReglas()
     Console.WriteLine();
     Console.WriteLine("");
     Console.WriteLine("Presione ENTER para volver al menú");
+    Console.ReadLine();
+    Console.Clear();
+}
+void EstadisticasSesion()
+{
+    Console.WriteLine("Estadísticas de la sesión");
+    Console.WriteLine();
+    Console.WriteLine($"Total de Contenidos Evaluados: {contadorevaluados}");
+    Console.WriteLine();
+    Console.WriteLine($"Total de Contenidos Publicados: {totalpublicados}");
+    Console.WriteLine();
+    Console.WriteLine($"Total de Contenidos Rechazados: {contadorrechazados}");
+    Console.WriteLine();
+    Console.WriteLine($"Total de Contenidos en Revisión: {totalenrevision}");
+    Console.WriteLine();
+    if (totalimpactosaltos > totalimpactosmedios && totalimpactosaltos > totalimpactosbajos)
+    {
+        Console.WriteLine("El impacto predominante es el Impacto Alto");
+        Console.WriteLine();
+    }
+    else if (totalimpactosmedios > totalimpactosaltos && totalimpactosmedios > totalimpactosbajos)
+    {
+        Console.WriteLine("El impacto predominante es el Impacto Medio");
+        Console.WriteLine();
+    }
+    else if (totalimpactosbajos > totalimpactosaltos && totalimpactosbajos > totalimpactosmedios)
+    {
+        Console.WriteLine("El impacto predominante es el Impacto Bajo");
+        Console.WriteLine();
+    }
+    else
+    {
+        Console.WriteLine("No hay un solo impacto predominante por ahora");
+        Console.WriteLine();
+    }
+    Console.WriteLine($"El porcentaje de Aprobación es del {(totalpublicados / contadorevaluados) * 100}%");
+    Console.WriteLine();
+    Console.WriteLine();
+    Console.WriteLine("Presione Enter");
+    Console.WriteLine("");
     Console.ReadLine();
     Console.Clear();
 }
