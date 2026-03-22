@@ -116,7 +116,7 @@ void ValidacionDeDatos()
     Console.WriteLine("1. Pelicula");
     Console.WriteLine("2. Serie");
     Console.WriteLine("3. Documental");
-    Console.WriteLine("4. En vivo");
+    Console.WriteLine("4. Evento En Vivo");
     Console.WriteLine("");
     while (!int.TryParse(Console.ReadLine(), out tipo) || tipo < 1 || tipo > 4)
     {
@@ -285,7 +285,7 @@ string ClasificacionImpacto(bool b)
         Console.WriteLine("Razón: Cumple Reglas Técnicas, pero tiene Impacto Alto");
         return "";
     }
-    else if (produccion == 2 && ((tipo == 2 && duracion >= 60 && duracion <=90) || (tipo == 3 && duracion >= 60 && duracion <= 120) || (tipo == 4 && duracion >= 60 && duracion <= 120) || (tipo == 1 && duracion >= 60 && duracion <=120)))
+    else if (produccion == 2 || ((tipo == 2 && duracion >= 60 && duracion <=90) || (tipo == 3 && duracion >= 60 && duracion <= 120) || (tipo == 4 && duracion >= 60 && duracion <= 120) || (tipo == 1 && duracion >= 60 && duracion <=120)))
     {
         if ((clasificacion == 2 && (hora == 5 || hora == 23)) || (clasificacion == 3 && ((hora == 20 || hora==21 || hora == 6))))
         {
@@ -298,7 +298,7 @@ string ClasificacionImpacto(bool b)
             Console.WriteLine();
             return "";
         }
-        else
+        else if ((clasificacion == 2 && (hora >= 6 && hora <= 22)) || (clasificacion == 3 && ((hora >= 22 && hora <= 23) || (hora >= 0 && hora <= 5))))
         {
             totalpublicados++;
             totalimpactosmedios++;
@@ -308,6 +308,10 @@ string ClasificacionImpacto(bool b)
             Console.WriteLine();
             Console.WriteLine("Razón: Cumple con Reglas Técnicas y tiene Impacto Medio");
             Console.WriteLine();
+            return "";
+        }
+        else
+        {
             return "";
         }
     }
@@ -324,7 +328,7 @@ string ClasificacionImpacto(bool b)
             Console.WriteLine();
             return "";
         }
-        else
+        else if ((clasificacion == 2 && (hora >= 6 && hora <=22)) || (clasificacion == 3 && ((hora>=22 && hora<=23) || (hora>=0 && hora<=5) )))
         {
             totalpublicados++;
             totalimpactosbajos++;
@@ -334,6 +338,10 @@ string ClasificacionImpacto(bool b)
             Console.WriteLine();
             Console.WriteLine("Razón: Cumple con Reglas Técnicas y tiene Impacto Bajo");
             Console.WriteLine();
+            return "";
+        }
+        else
+        {
             return "";
         }
     }
