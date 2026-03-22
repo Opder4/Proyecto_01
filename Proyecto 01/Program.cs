@@ -147,7 +147,7 @@ void ValidacionDeDatos()
     Console.Clear();
     Console.WriteLine("Seleccione la Clasificación del Contenido");
     Console.WriteLine("");
-    Console.WriteLine("1. Todo publico");
+    Console.WriteLine("1. Para Todo publico");
     Console.WriteLine("2. +13");
     Console.WriteLine("3. +18");
     Console.WriteLine("");
@@ -298,7 +298,7 @@ string ClasificacionImpacto(bool b)
             Console.WriteLine();
             return "";
         }
-        else if ((clasificacion == 2 && (hora >= 6 && hora <= 22)) || (clasificacion == 3 && ((hora >= 22 && hora <= 23) || (hora >= 0 && hora <= 5))))
+        else if ((clasificacion == 2 && (hora >= 6 && hora <= 22)) || (clasificacion == 1 && (hora >= 0 && hora <= 23)) || (clasificacion == 3 && ((hora >= 22 && hora <= 23) || (hora >= 0 && hora <= 5))))
         {
             totalpublicados++;
             totalimpactosmedios++;
@@ -328,7 +328,7 @@ string ClasificacionImpacto(bool b)
             Console.WriteLine();
             return "";
         }
-        else if ((clasificacion == 2 && (hora >= 6 && hora <=22)) || (clasificacion == 3 && ((hora>=22 && hora<=23) || (hora>=0 && hora<=5) )))
+        else if ((clasificacion == 2 && (hora >= 6 && hora <=22)) || (clasificacion == 1 && (hora >= 0 && hora <= 23)) || (clasificacion == 3 && ((hora>=22 && hora<=23) || (hora>=0 && hora<=5) )))
         {
             totalpublicados++;
             totalimpactosbajos++;
