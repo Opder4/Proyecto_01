@@ -19,7 +19,7 @@ int totalenrevision = 0;
 
 do
 {
-    Console.WriteLine("Menú");
+    Console.WriteLine("              MENÚ");
     Console.WriteLine();
     for (int i = 1; i<=35; i++)
     {
@@ -28,9 +28,13 @@ do
     Console.WriteLine();
     Console.WriteLine();
     Console.WriteLine("1. Evaluar nuevo contendio");
+    Console.WriteLine();
     Console.WriteLine("2. Mostrar reglas del sistema");
+    Console.WriteLine();
     Console.WriteLine("3. Mostrar estadísticas de la sesión");
+    Console.WriteLine();
     Console.WriteLine("4. Reiniciar estadísticas");
+    Console.WriteLine();
     Console.WriteLine("5. Salir");
     Console.WriteLine("");
     for (int i = 1; i <= 35; i++)
@@ -39,10 +43,12 @@ do
     }
     Console.WriteLine();
     Console.WriteLine();
+    Console.WriteLine("Elija una opción");
+    Console.WriteLine();
     while (!int.TryParse(Console.ReadLine(), out opcion))
     {
         Console.WriteLine();
-        Console.WriteLine("Entrada no válida. Por favor, ingrese un número.");
+        Console.WriteLine("Entrada no válida. Por favor, ingrese una opción.");
         Console.WriteLine();
     }
     Console.WriteLine("");
@@ -64,7 +70,7 @@ do
             Console.Clear();
             break;
         case 2:
-
+            MostrarReglas();
             break;
         case 3:
             Console.WriteLine("Estadísticas de la sesión");
@@ -370,4 +376,62 @@ string ClasificacionImpacto(bool b)
     {
         return "";
     }
+}
+
+void MostrarReglas()
+{
+    for (int i = 0; i < 50; i++)
+    {
+        Console.Write("-");
+    }
+    Console.WriteLine("");
+    Console.WriteLine("          REGLAS OBLIGATORIAS DEL SISTEMA");
+    for (int i = 0; i < 50; i++)
+    {
+        Console.Write("-");
+    }
+    Console.WriteLine("");
+
+    Console.WriteLine("");
+    Console.WriteLine("1. REGLAS DE CLASIFICACIÓN Y HORARIO");
+    Console.WriteLine();
+    Console.WriteLine("- Todo público: permitido a cualquier hora.");
+    Console.WriteLine();
+    Console.WriteLine("- +13: permitido entre las 5 y las 23 horas.");
+    Console.WriteLine("  *Nota de ajustes: Si se programa a las 5 o 23 horas, se decide 'Publicar con ajustes'.");
+    Console.WriteLine();
+    Console.WriteLine("- +18: permitido entre las 20 y las 6 horas.");
+    Console.WriteLine("  *Nota de ajustes: Si se programa a las 20, 21 o 6 horas, se decide 'Publicar con ajustes'.");
+    Console.WriteLine();
+    Console.WriteLine("");
+    Console.WriteLine("2. REGLAS DE DURACIÓN POR TIPO DE CONTENIDO");
+    Console.WriteLine();
+    Console.WriteLine("- Película: 60-180 minutos.");
+    Console.WriteLine("- Serie: 20-90 minutos.");
+    Console.WriteLine("- Documental: 30-120 minutos.");
+    Console.WriteLine("- Evento en vivo: 30-240 minutos.");
+    Console.WriteLine();
+    Console.WriteLine("");
+    Console.WriteLine("3. REGLAS DE NIVEL DE PRODUCCIÓN");
+    Console.WriteLine();
+    Console.WriteLine("-Producción baja: solo válida para Todo público o +13");
+    Console.WriteLine("- Producción media o alta: válida para cualquier clasificación.");
+    Console.WriteLine();
+    Console.WriteLine("");
+    Console.WriteLine("4. CLASIFICACIÓN DE IMPACTO");
+    Console.WriteLine();
+    Console.WriteLine("- Impacto Alto: producción alta, o duración mayor a 120 minutos, o programado entre 20 y 23 horas.");
+    Console.WriteLine("- Impacto Medio: producción media o duración entre 60 y 120 minutos.");
+    Console.WriteLine("- Impacto Bajo: producción baja y duración menor a 60 minutos.");
+    Console.WriteLine();
+    Console.WriteLine("");
+    for (int i = 0; i < 50; i++)
+    {
+        Console.Write("-");
+    }
+    Console.WriteLine();
+    Console.WriteLine("");
+    Console.WriteLine("Presione ENTER para volver al menú");
+    Console.ReadLine();
+    Console.Clear();
 }
